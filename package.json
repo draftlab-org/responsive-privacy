@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "pnpm --filter playground dev",
+    "dev": "pnpm --filter responsive-privacy-playground dev",
     "test": "pnpm -r test"
   },
   "engines": {
