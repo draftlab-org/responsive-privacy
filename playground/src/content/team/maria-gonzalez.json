@@ -1,0 +1,10 @@
+{
+  "name": "María González",
+  "photo": "/images/maria.jpg",
+  "role": "Field Coordinator",
+  "bio": "María coordinates ground operations in Central America, working directly with local civil society partners on digital security training.",
+  "email": "maria@example-cso.org",
+  "social": "https://signal.group/maria",
+  "department": "Programs",
+  "order": 3
+}

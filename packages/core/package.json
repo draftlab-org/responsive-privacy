@@ -1,0 +1,30 @@
+{
+  "name": "@responsive-privacy/core",
+  "version": "0.1.0",
+  "description": "Core privacy transformation engine — framework-agnostic attribute filtering based on the Superbloom/Draftlab Attribution Taxonomy",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./defaults": {
+      "import": "./dist/defaults.js",
+      "types": "./dist/defaults.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.5.0"
+  }
+}

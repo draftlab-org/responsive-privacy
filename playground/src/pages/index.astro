@@ -1,0 +1,119 @@
+---
+/**
+ * Team Page — Responsive Privacy Demo
+ *
+ * This page demonstrates how responsive privacy works with Astro content collections.
+ * Build at different privacy levels to see different output:
+ *
+ *   PRIVACY_LEVEL=4 astro build   # Full transparency — everything visible
+ *   PRIVACY_LEVEL=2 astro build   # Professional identity — names visible, no contact info
+ *   PRIVACY_LEVEL=1 astro build   # Role only — names replaced, minimal info
+ *   PRIVACY_LEVEL=0 astro build   # Complete anonymity — all PII hidden
+ */
+
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { filterCollection, getPrivacyStatus, shouldShow } from '@responsive-privacy/astro/helpers';
+import privacyConfig from '../../responsive-privacy.config';
+
+// 1. Get raw content from Astro content collection
+const rawTeam = await getCollection('team');
+
+// 2. Filter through responsive privacy
+const team = filterCollection('team', rawTeam, privacyConfig);
+
+// 3. Get current privacy status for display
+const status = getPrivacyStatus(privacyConfig);
+
+// Sort by order field (unmapped, always passes through)
+team.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Base title="Our Team">
+  <span slot="privacy-badge" class={`privacy-badge level-${status.level}`}>
+    🔒 Level {status.level}: {status.name}
+  </span>
+
+  {status.isReduced && (
+    <div class="hidden-notice" style="margin-bottom: 1.5rem;">
+      ⚠️ This site is currently displaying reduced information for safety reasons.
+      {status.level <= 1 && ' Staff identities have been protected.'}
+    </div>
+  )}
+
+  <div class="team-grid">
+    {team.map((member) => (
+      <article class="team-card">
+        {/* Photo: shown at Level 2+, omitted otherwise */}
+        {member.data.photo ? (
+          <div class="photo">
+            {/* In a real site this would be an <img> tag */}
+            👤
+          </div>
+        ) : (
+          <div class="photo">🔒</div>
+        )}
+
+        {/* Name: shown at Level 2+, replaced with "Staff Member" at Level 0-1 */}
+        <h3>
+          {member._privacy.fields.find(f => f.field === 'name')?.redactionApplied
+            ? <span class="redacted">{member.data.name}</span>
+            : member.data.name
+          }
+        </h3>
+
+        {/* Role: shown at Level 1+ */}
+        {member.data.role && (
+          <div class="role">{member.data.role}</div>
+        )}
+
+        {/* Department: shown at Level 1+ */}
+        {member.data.department && (
+          <div class="department">{member.data.department}</div>
+        )}
+
+        {/* Bio: shown at Level 3+ */}
+        {member.data.bio && (
+          <p class="bio">{member.data.bio}</p>
+        )}
+
+        {/* Email: shown at Level 4 only, replaced at lower levels */}
+        {member.data.email && (
+          <div class="contact">
+            {member._privacy.fields.find(f => f.field === 'email')?.redactionApplied
+              ? <span class="redacted">{member.data.email}</span>
+              : <a href={`mailto:${member.data.email}`}>{member.data.email}</a>
+            }
+          </div>
+        )}
+
+        {/* Social: shown at Level 3+ */}
+        {member.data.social && (
+          <div class="contact">
+            <a href={member.data.social} target="_blank" rel="noopener">Social Profile →</a>
+          </div>
+        )}
+
+        {/* Debug: show what was hidden */}
+        {member._privacy.hiddenFields.length > 0 && (
+          <div class="hidden-notice">
+            {member._privacy.hiddenFields.length} field(s) hidden at this privacy level
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+
+  <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-muted);">
+    <p>
+      Built with <strong>@responsive-privacy/astro</strong> at
+      Privacy Level {status.level} ({status.name}).
+    </p>
+    <p style="margin-top: 0.5rem;">
+      Taxonomy based on the
+      <a href="https://research-superbloom.netlify.app/attribution-taxonomy/" style="color: var(--color-accent);">
+        Superbloom/Draftlab Responsive Transparency research
+      </a>.
+    </p>
+  </footer>
+</Base>

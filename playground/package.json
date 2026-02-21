@@ -1,0 +1,21 @@
+{
+  "name": "responsive-privacy-playground",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:level0": "PRIVACY_LEVEL=0 astro build",
+    "build:level1": "PRIVACY_LEVEL=1 astro build",
+    "build:level2": "PRIVACY_LEVEL=2 astro build",
+    "build:level3": "PRIVACY_LEVEL=3 astro build",
+    "build:level4": "PRIVACY_LEVEL=4 astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@responsive-privacy/astro": "workspace:*",
+    "@responsive-privacy/core": "workspace:*",
+    "astro": "^5.0.0"
+  }
+}

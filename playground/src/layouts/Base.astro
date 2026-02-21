@@ -1,0 +1,125 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Responsive Privacy Demo</title>
+    <style>
+      :root {
+        --color-bg: #fafaf9;
+        --color-text: #1c1917;
+        --color-muted: #78716c;
+        --color-border: #e7e5e4;
+        --color-accent: #b45309;
+        --color-warning: #dc2626;
+        --color-card: #fff;
+        --radius: 8px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.6;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      header {
+        border-bottom: 2px solid var(--color-border);
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      header h1 { font-size: 1.5rem; font-weight: 700; }
+
+      .privacy-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .privacy-badge.level-0 { background: #fee2e2; color: #991b1b; }
+      .privacy-badge.level-1 { background: #ffedd5; color: #9a3412; }
+      .privacy-badge.level-2 { background: #fef9c3; color: #854d0e; }
+      .privacy-badge.level-3 { background: #dcfce7; color: #166534; }
+      .privacy-badge.level-4 { background: #e0e7ff; color: #3730a3; }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .team-card {
+        background: var(--color-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+      }
+
+      .team-card .photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--color-border);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--color-muted);
+      }
+
+      .team-card h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+      .team-card .role { color: var(--color-muted); font-size: 0.9rem; }
+      .team-card .department { color: var(--color-muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+      .team-card .bio { font-size: 0.9rem; margin: 0.75rem 0; }
+      .team-card .contact { font-size: 0.85rem; color: var(--color-accent); }
+
+      .redacted {
+        font-style: italic;
+        color: var(--color-muted);
+        background: #f5f5f4;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+
+      .hidden-notice {
+        color: var(--color-warning);
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      nav { margin-bottom: 2rem; }
+      nav a { color: var(--color-accent); margin-right: 1rem; text-decoration: none; }
+      nav a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🔒 Responsive Privacy Demo</h1>
+      <slot name="privacy-badge" />
+    </header>
+    <nav>
+      <a href="/">Team Page</a>
+    </nav>
+    <slot />
+  </body>
+</html>

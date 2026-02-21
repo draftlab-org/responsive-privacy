@@ -1,0 +1,15 @@
+{
+  "name": "responsive-privacy",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Responsive privacy for static sites — build-time PII protection based on the Superbloom/Draftlab Attribution Taxonomy",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter playground dev",
+    "test": "pnpm -r test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

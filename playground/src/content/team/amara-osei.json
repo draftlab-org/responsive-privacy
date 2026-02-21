@@ -1,0 +1,11 @@
+{
+  "name": "Amara Osei",
+  "photo": "/images/amara.jpg",
+  "role": "Executive Director",
+  "bio": "Amara has led digital rights initiatives across West Africa for over a decade, focusing on internet freedom and civic participation.",
+  "email": "amara@example-cso.org",
+  "phone": "+1-555-0101",
+  "social": "https://mastodon.social/@amara",
+  "department": "Leadership",
+  "order": 1
+}

@@ -1,0 +1,11 @@
+{
+  "name": "David Chen",
+  "photo": "/images/david.jpg",
+  "role": "Senior Researcher",
+  "bio": "David specializes in surveillance technology analysis and has published extensively on state-sponsored digital threats.",
+  "email": "david@example-cso.org",
+  "phone": "+1-555-0102",
+  "social": "https://bsky.app/profile/david.example",
+  "department": "Research",
+  "order": 2
+}
