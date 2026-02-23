@@ -1,8 +1,18 @@
 {
   "name": "@responsive-privacy/astro",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Astro integration for responsive privacy — build-time PII protection for static sites",
   "license": "MIT",
+  "author": "Tin Geber <code@draftlab.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/draftlab-org/responsive-privacy",
+    "directory": "packages/astro"
+  },
+  "homepage": "https://github.com/draftlab-org/responsive-privacy/tree/main/packages/astro",
+  "bugs": "https://github.com/draftlab-org/responsive-privacy/issues",
+  "keywords": ["privacy", "pii", "redaction", "build-time", "astro", "astro-integration", "static-site", "civil-society"],
+  "engines": { "node": ">=18" },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

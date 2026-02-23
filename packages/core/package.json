@@ -1,8 +1,18 @@
 {
   "name": "@responsive-privacy/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Core privacy transformation engine — framework-agnostic attribute filtering based on the Superbloom/Draftlab Attribution Taxonomy",
   "license": "MIT",
+  "author": "Tin Geber <code@draftlab.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/draftlab-org/responsive-privacy",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/draftlab-org/responsive-privacy/tree/main/packages/core",
+  "bugs": "https://github.com/draftlab-org/responsive-privacy/issues",
+  "keywords": ["privacy", "pii", "redaction", "build-time", "static-site", "taxonomy", "civil-society"],
+  "engines": { "node": ">=18" },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
